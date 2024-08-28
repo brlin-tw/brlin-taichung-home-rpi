@@ -1,0 +1,16 @@
+# Copyright 2024 林博仁(Buo-ren Lin) <buo.ren.lin@gmail.com>
+# SPDX-License-Identifier: AGPL-3.0-or-later
+- name: Deploy the Raspberry Pi of my Taichung home
+  hosts: all
+  tasks:
+    - name: Update installed packages to its latest versions, to avoid fixed bugs
+      become: true
+      ansible.builtin.package:
+        name: '*'
+        # This is a full-system deployment playbook
+        # noqa package-latest
+        state: latest
+
+    - name: Reboot system to apply changes
+      become: true
+      ansible.builtin.reboot:
