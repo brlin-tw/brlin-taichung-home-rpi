@@ -1,0 +1,7 @@
+# Copyright 2024 林博仁(Buo-ren Lin) <buo.ren.lin@gmail.com>
+# SPDX-License-Identifier: AGPL-3.0-or-later
+- name: Ensure that the managed nodes are accessible
+  hosts: all
+  tasks:
+    - name: Ensure that the managed nodes are accessible
+      ansible.builtin.ping:
