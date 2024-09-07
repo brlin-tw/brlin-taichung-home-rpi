@@ -2,6 +2,14 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 - name: Deploy the Raspberry Pi of my Taichung home
   hosts: all
+  handlers:
+    - name: >-
+        Reload the avahi-daemon service to apply configuration changes
+      become: true
+      ansible.builtin.service:
+        name: avahi-daemon
+        state: reloaded
+
   tasks:
     - name: Update installed packages to its latest versions, to avoid fixed bugs
       become: true
@@ -10,6 +18,15 @@
         # This is a full-system deployment playbook
         # noqa package-latest
         state: latest
+
+    - name: Enable broadcasting the host's existence via Zeroconf
+      become: true
+      notify: >-
+        Reload the avahi-daemon service to apply configuration changes
+      ansible.builtin.replace:
+        path: /etc/avahi/avahi-daemon.conf
+        regexp: '^publish-workstation=no'
+        replace: 'publish-workstation=yes'
 
     - name: Reboot system to apply changes
       become: true
