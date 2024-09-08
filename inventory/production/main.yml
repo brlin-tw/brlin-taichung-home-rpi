@@ -12,7 +12,7 @@ all:
       ansible_host: brlin-rpi5.local
 
       dhis_host_id: 31753
-      dhis_hostname: brlin-taichung.dhis.org
+      dhis_host_name: brlin-taichung.dhis.org
       dhis_authp1: !vault |
         $ANSIBLE_VAULT;1.1;AES256
         34366365323636613735336230646462663338623034373235303362383332366237633534626663
