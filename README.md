@@ -17,6 +17,8 @@ The following materials are referenced during the development of this project:
   Explains which file to check if the APT package management system considered the system requires a reboot to apply the updates.
 * [Execute Ansible reboot with handler only when required - Stack Overflow](https://stackoverflow.com/questions/75272769/execute-ansible-reboot-with-handler-only-when-required)  
   Explains how to reboot the system only when the package management system considered necessary using Ansible's handler mechanism.
+* [Comment by Sergey G. Brester on Jun 1, 2022 - \[BR\]: fail2ban does not start on some debian/ubuntu systems - backend should probably be set to systemd on all systemd-based distros · Issue #3292 · fail2ban/fail2ban](https://github.com/fail2ban/fail2ban/issues/3292#issuecomment-1142503461)  
+  Explains how to workaround a configuration bug in Debian 12 that prevents the Fail2ban service from starting up using default configuration.
 
 ## Licensing
 
