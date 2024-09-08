@@ -1,0 +1,12 @@
+# Inventory file for the production environment
+#
+# References:
+#   - How to build your inventory — Ansible Documentation
+#     https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html
+#
+# Copyright 2024 林博仁(Buo-ren Lin) <buo.ren.lin@gmail.com>
+# SPDX-License-Identifier: AGPL-3.0-or-later
+all:
+  hosts:
+    brlin-rpi5:
+      ansible_host: brlin-rpi5.local
