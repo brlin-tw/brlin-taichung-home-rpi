@@ -7,7 +7,16 @@ For providing services including but not limited to remote access to my Taichung
 
 ## References
 
-To be addressed.
+The following materials are referenced during the development of this project:
+
+* [DEFAULT_STDOUT_CALLBACK — Ansible Configuration Settings — Ansible Community Documentation](https://docs.ansible.com/ansible/latest/reference_appendices/config.html#default-stdout-callback)  
+  Explains how to set the YAML stdout callback plugin.
+* [githubixx/ansible-role-wireguard: Ansible role for installing WireGuard VPN. Supports Ubuntu, Debian, Archlinx, Fedora and CentOS.](https://github.com/githubixx/ansible-role-wireguard)  
+  Explains how to use the githubxx.ansible-role-wireguard Ansible role.
+* [How to find out if my Ubuntu/Debian Linux needs a reboot - nixCraft](https://www.cyberciti.biz/faq/how-to-find-out-if-my-ubuntudebian-linux-server-needs-a-reboot/)  
+  Explains which file to check if the APT package management system considered the system requires a reboot to apply the updates.
+* [Execute Ansible reboot with handler only when required - Stack Overflow](https://stackoverflow.com/questions/75272769/execute-ansible-reboot-with-handler-only-when-required)  
+  Explains how to reboot the system only when the package management system considered necessary using Ansible's handler mechanism.
 
 ## Licensing
 
