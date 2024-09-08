@@ -90,7 +90,7 @@ all:
           allowed_ips: 192.168.193.1/32
           persistent_keepalive: 25
 
-        # 林博仁（Google Pixel 8 Pro手機）
+        # 林博仁（Google Pixel 8 Pro 手機）
         brlin-pixel8pro:
           public_key: 1nBVtSNkUWWGuGAEApTYPqbPu8RufK9oq/aFqJZTJx8=
           allowed_ips: 192.168.193.2/32
