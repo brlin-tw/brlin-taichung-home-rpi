@@ -10,3 +10,58 @@ all:
   hosts:
     brlin-rpi5:
       ansible_host: brlin-rpi5.local
+
+      wireguard_port: 51820
+      wireguard_private_key: !vault |
+        $ANSIBLE_VAULT;1.1;AES256
+        37363130343630393363393032356661616138393139353539646662363462646534663036306466
+        3963323464326238653332633335396231323436373364660a366561656437316239336563636539
+        36626233306366383837626238393761633332336133356564386330316166393166313232373736
+        3830396338626666630a636439656135373333623663623338303061633239366666633763636536
+        32346466353465356562643464373633323165636537366362393238636162666266643539343338
+        6665333737306334393832613330663837663930313365656466
+
+      wireguard_install_kernel_module: false
+      wireguard_addresses:
+        - 192.168.193.254/24
+      wireguard_mtu: "1300"
+      wireguard_persistent_keepalive: "25"
+      wireguard_preup:
+        - echo 1 > /proc/sys/net/ipv4/ip_forward
+        - iptables -t filter -A INPUT -p udp --destination-port 51820 -j ACCEPT
+      wireguard_postup:
+        - iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+        - iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE
+        - iptables -t filter -A FORWARD -i %i -j ACCEPT
+        - iptables -t filter -A FORWARD -o %i -j ACCEPT
+      wireguard_predown:
+        - iptables -t filter -D FORWARD -o %i -j ACCEPT
+        - iptables -t filter -D FORWARD -i %i -j ACCEPT
+        - iptables -t nat -D POSTROUTING -o wlan0 -j MASQUERADE
+        - iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+      wireguard_postdown:
+        - iptables -t filter -D INPUT -p udp --destination-port 51820 -j ACCEPT
+        - echo 0 > /proc/sys/net/ipv4/ip_forward
+
+      wireguard_unmanaged_peers:
+        # 林博仁（Framework Laptop 13）
+        brlin-fw13:
+          public_key: iyP+dLa7DQoFd+2DEZpCVILfEmwnc77OZS36Reek1EQ=
+          allowed_ips: 192.168.193.1/32
+          persistent_keepalive: 25
+
+        # 林博仁（Google Pixel 8 Pro手機）
+        brlin-pixel8pro:
+          public_key: 1nBVtSNkUWWGuGAEApTYPqbPu8RufK9oq/aFqJZTJx8=
+          allowed_ips: 192.168.193.2/32
+          persistent_keepalive: 25
+
+        # 林博仁（小米平板 5）
+        brlin-mipad5:
+          public_key: AiDN1HYi7thmjeqRIW26Jgs1iHbOHIMDidbfSpfJpUc=
+          allowed_ips: 192.168.193.3/32
+
+        # 林博仁（Chromecast TV(2K)）
+        brlin-chromecast-tv2k:
+          public_key: 7VKu4TkMa/kacJZUCZrOv+g5rvRe08mAKOq8JehwZW8=
+          allowed_ips: 192.168.193.4/32

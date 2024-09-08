@@ -39,3 +39,8 @@
         path: /etc/avahi/avahi-daemon.conf
         regexp: '^publish-workstation=no'
         replace: 'publish-workstation=yes'
+
+    - name: Deploy WireGuard
+      become: true
+      ansible.builtin.import_role:
+        name: githubixx.ansible_role_wireguard
