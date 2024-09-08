@@ -22,8 +22,6 @@ roles:
   - name: githubixx.ansible_role_wireguard
     version: "17.0.0"
 
-collections: []
-  # Install a collection from Ansible Galaxy.
-  #- name: community.general
-  #  version: ">=7.0.0"
-  #  source: https://galaxy.ansible.com
+collections:
+  - name: community.general
+    version: ">=9.0.0"
