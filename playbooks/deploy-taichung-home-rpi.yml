@@ -10,6 +10,9 @@
         name: avahi-daemon
         state: reloaded
 
+    - name: Reboot system to apply changes
+      become: true
+      ansible.builtin.reboot:
   tasks:
     - name: Update installed packages to its latest versions, to avoid fixed bugs
       become: true
@@ -19,6 +22,15 @@
         # noqa package-latest
         state: latest
 
+    - name: Check whether reboot is required after update
+      when: ansible_os_family == "Debian"
+      register: apt_reboot_is_required_raw
+      changed_when: apt_reboot_is_required_raw.stat.exists
+      notify: Reboot system to apply changes
+      ansible.builtin.stat:
+        path: /var/run/reboot-required
+        get_checksum: false
+
     - name: Enable broadcasting the host's existence via Zeroconf
       become: true
       notify: >-
@@ -27,7 +39,3 @@
         path: /etc/avahi/avahi-daemon.conf
         regexp: '^publish-workstation=no'
         replace: 'publish-workstation=yes'
-
-    - name: Reboot system to apply changes
-      become: true
-      ansible.builtin.reboot:
