@@ -22,6 +22,13 @@
         name: fail2ban
         state: started
 
+    - name: >-
+        Restart the DHIS client service to apply configuration changes
+      become: true
+      ansible.builtin.service:
+        name: dhis-client
+        # This service doesn't support reload operation
+        state: restarted
   tasks:
     - name: Update installed packages to its latest versions, to avoid fixed bugs
       become: true
@@ -74,3 +81,19 @@
         regexp: '^backend = '
         insertafter: '^\[sshd\]$'
         line: backend = systemd
+
+    - name: Install client of the DHIS DDNS service
+      become: true
+      ansible.builtin.package:
+        name: dhis-client
+
+    - name: Install the DHIS client configuration file
+      become: true
+      notify: >-
+        Restart the DHIS client service to apply configuration changes
+      ansible.builtin.template:
+        src: dhid.conf.j2
+        dest: /etc/dhid.conf
+        owner: root
+        group: root
+        mode: '0600'
