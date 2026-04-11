@@ -39,7 +39,7 @@
         state: latest
 
     - name: Check whether reboot is required after update
-      when: ansible_os_family == "Debian"
+      when: ansible_facts["os_family"] == "Debian"
       register: apt_reboot_is_required_raw
       changed_when: apt_reboot_is_required_raw.stat.exists
       notify: Reboot system to apply changes
@@ -70,8 +70,8 @@
         Workaround fail2ban/fail2ban#3292 on Debian 12 so that F2B
         service can be started
       when: >-
-        ansible_os_family == "Debian"
-        and ansible_distribution_major_version == "12"
+        ansible_facts["os_family"] == "Debian"
+        and ansible_facts["distribution_major_version"] == "12"
       become: true
       notify: >-
         Start Fail2ban service again if the Debian 12 workaround is
