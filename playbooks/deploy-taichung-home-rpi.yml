@@ -2,6 +2,10 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 - name: Deploy the Raspberry Pi of my Taichung home
   hosts: all
+  vars:
+    # Avoid doing certain tasks that may cause service interruption
+    tc_home_rpi_upgrade_system: false
+    tc_home_rpi_deploy_wireguard: false
   handlers:
     - name: >-
         Reload the avahi-daemon service to apply configuration changes
@@ -31,6 +35,7 @@
         state: restarted
   tasks:
     - name: Update installed packages to its latest versions, to avoid fixed bugs
+      when: tc_home_rpi_upgrade_system
       become: true
       ansible.builtin.package:
         name: '*'
@@ -57,6 +62,7 @@
         replace: 'publish-workstation=yes'
 
     - name: Deploy WireGuard
+      when: tc_home_rpi_deploy_wireguard
       become: true
       ansible.builtin.import_role:
         name: githubixx.ansible_role_wireguard
