@@ -14,13 +14,13 @@
 #   — Galaxy User Guide — Ansible Community Documentation
 #   https://docs.ansible.com/ansible/latest/galaxy/user_guide.html#installing-roles-and-collections-from-the-same-requirements-yml-file
 #
-# Copyright 2024 林博仁(Buo-ren Lin) <buo.ren.lin@gmail.com>
+# Copyright 2026 林博仁(Buo-ren Lin) <buo.ren.lin@gmail.com>
 # SPDX-License-Identifier: CC-BY-SA-4.0
 ---
 roles:
   # Install a role from Ansible Galaxy.
   - name: githubixx.ansible_role_wireguard
-    version: "17.0.0"
+    version: "19.1.0"
 
 collections:
   - name: community.general
