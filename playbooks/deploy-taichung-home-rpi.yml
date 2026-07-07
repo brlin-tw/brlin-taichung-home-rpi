@@ -30,7 +30,7 @@
         Restart the DHIS client service to apply configuration changes
       become: true
       ansible.builtin.service:
-        name: dhis-client
+        name: snap.dhis-client.dhis-client.service
         # This service doesn't support reload operation
         state: restarted
   tasks:
@@ -90,7 +90,7 @@
 
     - name: Install client of the DHIS DDNS service
       become: true
-      ansible.builtin.package:
+      community.general.snap:
         name: dhis-client
 
     - name: Install the DHIS client configuration file
@@ -99,7 +99,7 @@
         Restart the DHIS client service to apply configuration changes
       ansible.builtin.template:
         src: dhid.conf.j2
-        dest: /etc/dhid.conf
+        dest: /var/snap/dhis-client/common/dhid.conf
         owner: root
         group: root
         mode: '0600'
