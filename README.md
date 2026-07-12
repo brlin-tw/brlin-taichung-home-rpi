@@ -18,6 +18,30 @@ The following are the prerequisites of this product:
 * You must have the following secrets:
     + Ansible vault password of The Raspberry Pi SBC in the Taichung residence of Buo-ren Lin project: Stored in Buo-ren Lin's Bitwarden vault.
 
+## Usage
+
+Refer to the following instructions to use this product:
+
+1. Download the release archive from [the Releases page](https://gitlab.com/brlin/brlin-taichung-home-rpi/-/releases).
+1. Extract the archive to the directory of your choice.
+1. Edit [the production inventory](inventory/production) for any required configuration changes.
+1. Connect the Ansible controller to the network with the target system.
+1. Launch a text terminal emulator.
+1. In the text terminal emulator, run the following comamnd to switch the working directory to the extracted product directory:
+
+    ```bash
+    cd /path/to/brlin-taichung-home-rpi-X.Y.Z
+    ```
+
+   Replace the `/path/to/brlin-taichung-home-rpi-X.Y.Z` placeholder text to the actual path of the extracted product directory.
+1. Run the following command to deploy the target system:
+
+    ```bash
+    ansible-playbook -i inventory/production --ask-vault-pass playbooks/deploy-taichung-home-rpi.yml
+    ```
+
+   You need to enter the "Ansible vault password of The Raspberry Pi SBC in the Taichung residence of Buo-ren Lin project" secret to decrypt the encrypted values.
+
 ## References
 
 The following materials are referenced during the development of this project:
