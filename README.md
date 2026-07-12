@@ -5,6 +5,19 @@ For providing services including but not limited to remote access to my Taichung
 <https://gitlab.com/brlin/brlin-taichung-home-rpi>  
 [![The GitLab CI pipeline status badge of the project's `main` branch](https://gitlab.com/brlin/brlin-taichung-home-rpi/badges/main/pipeline.svg?ignore_skipped=true "Click here to check out the comprehensive status of the GitLab CI pipelines")](https://gitlab.com/brlin/brlin-taichung-home-rpi/-/pipelines) [![GitHub Actions workflow status badge](https://github.com/brlin-tw/brlin-taichung-home-rpi/actions/workflows/check-potential-problems.yml/badge.svg "GitHub Actions workflow status")](https://github.com/brlin-tw/brlin-taichung-home-rpi/actions/workflows/check-potential-problems.yml) [![pre-commit enabled badge](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white "This project uses pre-commit to check potential problems")](https://pre-commit.com/) [![REUSE Specification compliance badge](https://api.reuse.software/badge/gitlab.com/brlin/brlin-taichung-home-rpi "This project complies to the REUSE specification to decrease software licensing costs")](https://api.reuse.software/info/gitlab.com/brlin/brlin-taichung-home-rpi)
 
+## Prerequisites
+
+The following are the prerequisites of this product:
+
+* The Ansible controller:
+    + Must have a recent release of the Ansible automation engine installed.
+    + Must be able to connect to the managed node via SSH.
+* The managed nodes:
+    + Must be Snap compatible in order to install the DHIS client software.
+* You must have superuser access to the managed nodes.
+* You must have the following secrets:
+    + Ansible vault password of The Raspberry Pi SBC in the Taichung residence of Buo-ren Lin project: Stored in Buo-ren Lin's Bitwarden vault.
+
 ## References
 
 The following materials are referenced during the development of this project:
